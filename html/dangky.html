@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.4.1.min.js"> </script>
+    <script>
+        $(document).ready(function() {
+            var usernameRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9_]+$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            $('#username').blur(function() {
+                if (!usernameRegex.test($(this).val())) {
+                    $('#usernameError').text('* Tên đăng nhập không hợp lệ (không chứa khoảng trắng, ký tự đặc biệt)');
+                } else {
+                    $('#usernameError').text('');
+                }
+            });
+
+            $('#password').blur(function() {
+                if ($(this).val().length < 6) {
+                    $('#passwordError').text('* Mật khẩu phải có ít nhất 6 ký tự');
+                } else {
+                    $('#passwordError').text('');
+                }
+            });
+
+            $('#confirmPassword').blur(function() {
+                if ($('#password').val() !== $(this).val()) {
+                    $('#confirmPasswordError').text('* Mật khẩu nhập lại không khớp');
+                } else {
+                    $('#confirmPasswordError').text('');
+                }
+            });
+
+            $('#email').blur(function() {
+                if (!emailRegex.test($(this).val())) {
+                    $('#emailError').text('* Email không hợp lệ');
+                } else {
+                    $('#emailError').text('');
+                }
+            });
+
+            $('#registerForm').submit(function(event) {
+                event.preventDefault(); 
+
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var confirmPassword = $('#confirmPassword').val();
+                var email = $('#email').val();
+                
+                var isValid = true; 
+
+                $('[id$="Error"]').text(''); 
+
+                if (!usernameRegex.test(username)) {
+                    $('#usernameError').text('* Tên đăng nhập không hợp lệ');
+                    isValid = false;
+                }
+
+                if (password.length < 6) {
+                    $('#passwordError').text('* Mật khẩu phải có ít nhất 6 ký tự');
+                    isValid = false;
+                }
+
+                if (password !== confirmPassword || confirmPassword === '') {
+                    $('#confirmPasswordError').text('* Mật khẩu nhập lại không khớp');
+                    isValid = false;
+                }
+
+                if (!emailRegex.test(email)) {
+                    $('#emailError').text('* Email không hợp lệ');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    return; 
+                }
+            
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                localStorage.setItem('email', email);
+
+                
+                alert("Đăng ký thành công! Chuyển hướng đến trang Đăng nhập.");
+                window.location.href = 'dangnhap.html';
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container-fluid bg-light p-0">
+            <div class="container-fluid header-content">
+                <div class="container">
+                    <div class="row d-flex justify-content-between align-items-center w-100 ">
+                        <div class="col-2">
+                            <h1 style="color: #e91e63; font-weight: 800; font-family: 'Arial', sans-serif;">Teemory</h1>
+                        </div>
+                        <div class="col-3">
+                            <span style="color: #f06292; font-weight: bold; font-style: italic; font-size: 20px; font-family: sans-serif;">
+                                “Hug Teddy - Unbox Love”
+                            </span>
+                        </div>
+                        <div class="col-4">
+                            <form action="" class="search-form">
+                                <div class="input-group custom-search mt-1">
+                                    <input type="text" placeholder="Nhập sản phẩm cần tìm ?" class="form-control border-0 bg-transparent ps-4">
+                                    <button class="btn border-0 pe-4" type="submit">
+                                        <i class="bi bi-search" style="color: #e91e63; font-size: 20px; font-weight: bold;"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-3 d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center" style="gap: 5px;">
+                                <div style="
+                                    background-color: #f06292; 
+                                    width: 35px; 
+                                    height: 35px; 
+                                    border-radius: 50%; 
+                                    display: flex; 
+                                    align-items: center; 
+                                    justify-content: center;">
+                                    <i class="bi bi-telephone-fill" style="color: white; font-size: 18px;"></i>
+                                </div>
+
+                                <div style="
+                                        color: #f06292; 
+                                        font-weight: 800; 
+                                        font-size: 18px; 
+                                        font-family: 'Arial', sans-serif;">
+                                        036.694.3415
+                                    </div>
+                                </div>
+                                <div class="taikhoan-giohang dropdown-custom" style="position: relative; margin-right: 15px;">
+                                    <a href="#" class="icon-taikhoan-giohang">
+                                    <i style="font-size: 22px !important; color: white;" class="bi bi-person"></i>
+                                    </a>
+                                    
+                                    <ul class="dropdown-menu-custom" style="right: 0; left: auto; min-width: 150px;">
+                                        <li><a href="../html/dangnhap.html">Đăng nhập</a></li>
+                                        <li><a href="../html/dangky.html">Đăng ký</a></li>
+                                    </ul>
+                                </div>
+                                <div class="taikhoan-giohang" style="position: relative; ">
+                                    <a href="../html/thanhtoan.html" id="cart-icon" onmouseover="showCartItems()" 
+                                        class="icon-taikhoan-giohang"
+                                        style="position: relative;">
+                                        <i style="font-size: 22px !important; color: white;" class="bi bi-cart"></i>
+                                        <span id="cart-item-count" class="badge bg-warning rounded-circle" style="
+                                            position: absolute; 
+                                            top: -5px; 
+                                            right: -5px; 
+                                            color: black; 
+                                            border: 2px solid white;">0</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        <div style="height: 50px;" class="container-fluid header-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2 p-0">
+                        <a style="text-decoration: none; color: #f06292; width: 200px; font-size: 26px;" href="trangchu.html" class="d-flex align-items-center active">
+                            <div style="height: 50px; width: 70px;">
+                                <img src="../img/logo/logo.jpg" style="border: 3px solid; border-radius: 50%;" alt="" width="100%" height="100% ">
+                            </div>
+                            <span style="margin-left: 10px;">Teemory</span>
+                        </a>
+                    </div>
+                    <div class="col-10 p-0">
+                        <div class="navbar navbar-expand">
+                            <ul class="navbar-nav menu">
+                                <li class="nav-item"><a href="../html/gioithieu.html" class="nav-link me-4">Giới thiệu</a></li>
+                                <li class="nav-item dropdown-custom">
+                                    <a href="#" class="nav-link me-4 d-flex align-items-center">
+                                        Sản phẩm <i class="bi bi-chevron-down ms-1" style="font-size: 12px;"></i>
+                                    </a>
+                                    <ul class="dropdown-menu-custom">
+                                        <li><a href="../html/bupbe.html">Búp bê xinh xắn</a></li>
+                                        <li><a href="../html/gaubong.html">Gấu bông cao cấp</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a href="../html/tintuc.html" class="nav-link me-4">Tin Tức</a></li>
+                                <li class="nav-item"><a href="../html/dichvu.html" class="nav-link me-4">Dịch vụ</a></li>
+                                <li class="nav-item"><a href="../html/tatcasanpham.html" class="nav-link">Tất cả sản phẩm</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background-color: #FCEEF3; border-radius: 15px; padding: 40px;" class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                    <h1 style="font-size: 28px; font-weight: 800; color: #e91e63; margin-bottom: 25px; text-align: center; font-family: 'Times New Roman', Times, serif;">
+                        TẠO TÀI KHOẢN
+                    </h1>
+                    
+                    <form id="registerForm" style="background: white; padding: 30px; border-radius: 20px; border: 1px solid #f06292;">
+                        
+                        <div class="row mt-3 align-items-center">
+                            <div class="col-4">
+                                <label for="username" style="color: #755A9F; font-weight: 600;">Tên đăng nhập</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="username" 
+                                    style="border-radius: 50px; border: 1px solid #fceef3; background-color: #fceef3; color: #755A9F;">
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8"><small style="color: red;" id="usernameError">*</small>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="row mt-2 align-items-center">
+                            <div class="col-4">
+                                <label for="password" style="color: #755A9F; font-weight: 600;">Mật khẩu</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control" type="password" id="password" 
+                                    style="border-radius: 50px; border: 1px solid #fceef3; background-color: #fceef3; color: #755A9F;">
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8"><small style="color: red;" id="passwordError">*</small>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="row mt-2 align-items-center">
+                            <div class="col-4">
+                                <label for="confirmPassword" style="color: #755A9F; font-weight: 600;">Nhập lại mật khẩu</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control" type="password" id="confirmPassword" 
+                                    style="border-radius: 50px; border: 1px solid #fceef3; background-color: #fceef3; color: #755A9F;">
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8"><small style="color: red;" id="confirmPasswordError">*</small>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="row mt-2 align-items-center">
+                            <div class="col-4">
+                                <label for="email" style="color: #755A9F; font-weight: 600;">Email</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control" type="email" id="email" 
+                                    style="border-radius: 50px; border: 1px solid #fceef3; background-color: #fceef3; color: #755A9F;">
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8"><small style="color: red;" id="emailError">*</small>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="row mt-4 align-items-center">
+                            <div class="col-7 d-flex align-items-center">
+                                <input type="checkbox" id="remember" style="accent-color: #e91e63;">
+                                <label for="remember" style="margin-left: 8px; color: #755A9F; font-size: 14px;">Ghi nhớ mật khẩu</label>
+                            </div>
+                            <div class="col-5 text-end">
+                                <a href="dangnhap.html" style="color: #e91e63; text-decoration: none; font-weight: 600; font-size: 14px;">Đã có tài khoản?</a>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <button class="btn" style="background-color: #e91e63; color: white; border-radius: 50px; font-weight: 700; width: 100%; height: 45px; transition: 0.3s; border: none;">
+                                    ĐĂNG KÝ NGAY
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h1 style="font-weight: 800; font-size: 30px; margin-bottom: 15px;">Teemory</h1>
+                <p>Teemory là hệ thống quà tặng gấu bông, nơi mỗi sản phẩm không chỉ là đồ chơi mềm mại, mà là biểu tượng của tình yêu và quan tâm.</p>
+                <p>“Hug Teddy – Unbox love” – Teemory khiến việc tặng gấu bông là tặng một phần của trái tim, một phần cuộc sống và tình yêu mà các khách hàng muốn gửi gắm.</p>
+                
+                <h4 class="mt-4">Theo dõi chúng tôi</h4>
+                <div class="d-flex social-icons" style="gap: 10px;">
+                    <a href="#"><img src="../img/footer/theodoi1.webp" alt="FB"></a>
+                    <a href="#"><img src="../img/footer/theodoi2.webp" alt="IG"></a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h4>Hệ thống cửa hàng</h4>
+                <p><strong>TP. HỒ CHÍ MINH</strong><br>
+                50, Nguyễn Văn Bảo, Gò Vấp, TPHCM<br>
+                Đại Học Công Nghiệp - 036.694.3415</p>
+
+                <p>OPEN DAILY: 8H30-23H00</p>
+            </div>
+
+            <div class="col-md-4">
+                <h4>Hỗ trợ khách hàng</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">Chính sách đổi trả hàng online</a></li>
+                    <li><a href="#">Chính sách khách hàng thân thiết</a></li>
+                    <li><a href="#">Giao hàng & phí giao hàng</a></li>
+                    <li><a href="#">Giới thiệu & Liên hệ</a></li>
+                </ul>
+
+                <h4 class="mt-4">Phương thức thanh toán</h4>
+                <div class="d-flex" style="gap: 10px;">
+                    <img src="../img/footer/thanhtoan1.webp" style="height: 30px;" alt="ZaloPay">
+                    <img src="../img/footer/thanhtoan2.webp" style="height: 30px;" alt="OnePay">
+                    <img src="../img/footer/thanhtoan3.webp" style="height: 30px;" alt="VNPay">
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+            <p style="font-size: 14px; opacity: 0.7;">© Since 2026 Teemory.vn™ - Tất cả các quyền được bảo lưu</p>
+            <p>“Hug Teddy - Unbox love” - Teemory khiến việc tặng gấu bông là tặng một phần của trái tim, một phần cuộc sống và tình yêu mà các khách hàng muốn gửi gắm.</p>
+        </div>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

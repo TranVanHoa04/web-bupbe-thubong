@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.4.1.min.js"> </script>
+    <script src="../js/product.js"></script> <script>
+        function renderCart() {
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            var tbody = document.getElementById('cart-items-table-body');
+            var tempTotalElement = document.getElementById('temp-total');
+            var finalTotalElement = document.getElementById('final-total');
+            
+            // Nếu giỏ hàng trống
+            if (cart.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-5">Giỏ hàng của bạn đang trống!<br><a href="trangchu.html" class="btn btn-outline-pink mt-3">Mua sắm ngay</a></td></tr>`;
+                tempTotalElement.textContent = '0 đ';
+                finalTotalElement.textContent = '0 đ';
+                return;
+            }
+
+            var html = '';
+            var totalPrice = 0;
+
+            // Vòng lặp vẽ từng sản phẩm ra
+            cart.forEach(function(item) {
+                var itemTotal = item.price_sale * item.quantity;
+                totalPrice += itemTotal;
+
+                var priceFmt = item.price_sale.toLocaleString('vi-VN') + ' đ';
+                var itemTotalFmt = itemTotal.toLocaleString('vi-VN') + ' đ';
+
+                html += `
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="${item.img}" alt="${item.title}" style="width: 70px; height: 70px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd; margin-right: 15px;">
+                                <div>
+                                    <h6 style="color: #755A9F; font-weight: 600; margin-bottom: 5px;">${item.title}</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center" style="color: #333; font-weight: 500;">${priceFmt}</td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                                <input type="text" class="qty-input" value="${item.quantity}" readonly>
+                                <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                            </div>
+                        </td>
+                        <td class="text-end" style="color: #e91e63; font-weight: bold;">${itemTotalFmt}</td>
+                        <td class="text-center">
+                            <button class="btn-remove" onclick="removeItem(${item.id})"><i class="bi bi-trash3-fill"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+            var totalFmt = totalPrice.toLocaleString('vi-VN') + ' đ';
+            tempTotalElement.textContent = totalFmt;
+            finalTotalElement.textContent = totalFmt;
+        }
+
+        // Hàm thay đổi số lượng (+ / -)
+        function updateQty(id, change) {
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            var item = cart.find(p => p.id === id);
+            if(item) {
+                item.quantity += change;
+                if(item.quantity < 1) item.quantity = 1; // Không cho giảm dưới 1
+                localStorage.setItem('cart', JSON.stringify(cart));
+                renderCart();
+                updateCartItemCount();
+            }
+        }
+
+        // Hàm xóa 1 sản phẩm
+        function removeItem(id) {
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(p => p.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+            updateCartItemCount();
+        }
+
+        // CHẠY KHI TẢI TRANG
+        document.addEventListener("DOMContentLoaded", function () {
+            // Vẽ giỏ hàng
+            renderCart();
+
+            // Gắn sự kiện xóa toàn bộ giỏ hàng (Phải đặt ở đây để tránh lỗi null)
+            var clearBtn = document.getElementById("clear-cart-btn");
+            if (clearBtn) {
+                clearBtn.addEventListener("click", function() {
+                    if(confirm("Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng?")) {
+                        localStorage.removeItem('cart');
+                        renderCart();
+                        updateCartItemCount();
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+</head>
+<div class="container-fluid bg-light p-0">
+        
+        <div class="container-fluid header-content">
+            <div class="container">
+                <div class="row d-flex justify-content-between align-items-center w-100 ">
+                    <div class="col-2">
+                        <h1 style="color: #e91e63; font-weight: 800; font-family: 'Arial', sans-serif;">Teemory</h1>
+                    </div>
+                    <div class="col-3">
+                        <span style="color: #f06292; font-weight: bold; font-style: italic; font-size: 20px; font-family: sans-serif;">
+                            “Hug Teddy - Unbox Love”
+                        </span>
+                    </div>
+                    <div class="col-4">
+                        <form action="" class="search-form">
+                            <div class="input-group custom-search mt-1">
+                                <input type="text" placeholder="Nhập sản phẩm cần tìm ?" class="form-control border-0 bg-transparent ps-4">
+                                <button class="btn border-0 pe-4" type="submit">
+                                    <i class="bi bi-search" style="color: #e91e63; font-size: 20px; font-weight: bold;"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-3 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center" style="gap: 5px;">
+                            <div style="background-color: #f06292; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-telephone-fill" style="color: white; font-size: 18px;"></i>
+                            </div>
+                            <div style="color: #f06292; font-weight: 800; font-size: 18px; font-family: 'Arial', sans-serif;">036.694.3415</div>
+                        </div>
+                        <div class="taikhoan-giohang dropdown-custom" style="position: relative; margin-right: 15px;">
+                            <a href="#" class="icon-taikhoan-giohang">
+                                <i style="font-size: 22px !important; color: white;" class="bi bi-person"></i>
+                            </a>
+                            <ul class="dropdown-menu-custom" style="right: 0; left: auto; min-width: 150px;">
+                                <li><a href="../html/dangnhap.html">Đăng nhập</a></li>
+                                <li><a href="../html/dangky.html">Đăng ký</a></li>
+                            </ul>
+                        </div>
+                        <div class="taikhoan-giohang" style="position: relative; ">
+                            <a href="../html/thanhtoan.html" id="cart-icon" class="icon-taikhoan-giohang" style="position: relative;">
+                                <i style="font-size: 22px !important; color: white;" class="bi bi-cart"></i>
+                                <span id="cart-item-count" class="badge bg-warning rounded-circle" style="position: absolute; top: -5px; right: -5px; color: black; border: 2px solid white;">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height: 50px;" class="container-fluid header-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2 p-0">
+                        <a style="text-decoration: none; color: #f06292; width: 200px; font-size: 26px;" href="trangchu.html" class="d-flex align-items-center active">
+                            <div style="height: 50px; width: 70px;">
+                                <img src="../img/logo/logo.jpg" style="border: 3px solid; border-radius: 50%;" alt="" width="100%" height="100% ">
+                            </div>
+                            <span style="margin-left: 10px;">Teemory</span>
+                        </a>
+                    </div>
+                    <div class="col-10 p-0">
+                        <div class="navbar navbar-expand">
+                            <ul class="navbar-nav menu">
+                                <li class="nav-item"><a href="../html/gioithieu.html" class="nav-link me-4">Giới thiệu</a></li>
+                                <li class="nav-item dropdown-custom">
+                                    <a href="#" class="nav-link me-4 d-flex align-items-center">
+                                        Sản phẩm <i class="bi bi-chevron-down ms-1" style="font-size: 12px;"></i>
+                                    </a>
+                                    <ul class="dropdown-menu-custom">
+                                        <li><a href="../html/bupbe.html">Búp bê xinh xắn</a></li>
+                                        <li><a href="../html/gaubong.html">Gấu bông cao cấp</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a href="../html/tintuc.html" class="nav-link me-4">Tin Tức</a></li>
+                                <li class="nav-item"><a href="../html/dichvu.html" class="nav-link me-4">Dịch vụ</a></li>
+                                <li class="nav-item"><a href="../html/tatcasanpham.html" class="nav-link">Tất cả sản phẩm</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="trangchu.html" style="color: #e91e63; text-decoration: none;">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" style="color: #755A9F;">Giỏ hàng</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="container mt-4 mb-5">
+            <h2 style="color: #e91e63; font-weight: 800; text-transform: uppercase; margin-bottom: 25px;">Giỏ hàng của bạn</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="cart-table table-responsive">
+                        <table class="table table-borderless mb-0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 45%;">Sản phẩm</th>
+                                    <th style="width: 20%; text-align: center;">Đơn giá</th>
+                                    <th style="width: 20%; text-align: center;">Số lượng</th>
+                                    <th style="width: 15%; text-align: right;">Tạm tính</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody id="cart-items-table-body">
+                                
+                            </tbody>
+                            
+                        </table>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="trangchu.html" class="btn btn-outline-pink"><i class="bi bi-arrow-left"></i> Tiếp tục mua sắm</a>
+                        <button id="clear-cart-btn" class="btn btn-outline-secondary" style="border-radius: 50px; font-weight: bold;">
+                            <i class="bi bi-x-circle"></i> Xóa giỏ hàng
+                        </button>
+                    </div>
+                </div> <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="card border-0 shadow-sm" style="background-color: #FCEEF3; border-radius: 12px;">
+                        <div class="card-body p-4">
+                            <h4 style="color: #755A9F; font-weight: bold; border-bottom: 2px solid white; padding-bottom: 15px; margin-bottom: 20px;">Cộng Giỏ Hàng</h4>
+                            
+                            <div class="d-flex justify-content-between mb-3">
+                                <span style="font-weight: 600; color: #555;">Tạm tính:</span>
+                                <span id="temp-total" style="font-weight: bold; color: #333;">0 đ</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span style="font-weight: 600; color: #555;">Phí giao hàng:</span>
+                                <span style="font-weight: bold; color: #333;">Miễn phí</span>
+                            </div>
+
+                            <hr style="border-color: #e91e63; opacity: 0.2;">
+
+                            <div class="d-flex justify-content-between align-items-center mt-3 mb-4">
+                                <span style="font-weight: bold; color: #755A9F; font-size: 18px;">Tổng cộng:</span>
+                                <span id="final-total" class="total-amount" style="color: #e91e63; font-weight: 900; font-size: 24px;">0 đ</span>
+                            </div>
+                            
+                            <button class="btn btn-pink w-100 py-3" style="font-size: 16px;">TIẾN HÀNH THANH TOÁN</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3 text-center" style="font-size: 13px; color: #888;">
+                        <p><i class="bi bi-shield-check" style="color: #20c997;"></i> Thanh toán an toàn & Bảo mật 100%</p>
+                    </div>
+                </div> 
+            </div>
+            
+            
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h1 style="font-weight: 800; font-size: 30px; margin-bottom: 15px;">Teemory</h1>
+                        <p>Teemory là hệ thống quà tặng gấu bông, nơi mỗi sản phẩm không chỉ là đồ chơi mềm mại, mà là biểu tượng của tình yêu và quan tâm.</p>
+                        <p>“Hug Teddy – Unbox love” – Teemory khiến việc tặng gấu bông là tặng một phần của trái tim, một phần cuộc sống và tình yêu mà các khách hàng muốn gửi gắm.</p>
+                        
+                        <h4 class="mt-4">Theo dõi chúng tôi</h4>
+                        <div class="d-flex social-icons" style="gap: 10px;">
+                            <a href="#"><img src="../img/footer/theodoi1.webp" alt="FB"></a>
+                            <a href="#"><img src="../img/footer/theodoi2.webp" alt="IG"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4>Hệ thống cửa hàng</h4>
+                        <p><strong>TP. HỒ CHÍ MINH</strong><br>
+                        50, Nguyễn Văn Bảo, Gò Vấp, TPHCM<br>
+                        Đại Học Công Nghiệp - 036.694.3415</p>
+
+                        <p>OPEN DAILY: 8H30-23H00</p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4>Hỗ trợ khách hàng</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Chính sách đổi trả hàng online</a></li>
+                            <li><a href="#">Chính sách khách hàng thân thiết</a></li>
+                            <li><a href="#">Giao hàng & phí giao hàng</a></li>
+                            <li><a href="#">Giới thiệu & Liên hệ</a></li>
+                        </ul>
+
+                        <h4 class="mt-4">Phương thức thanh toán</h4>
+                        <div class="d-flex" style="gap: 10px;">
+                            <img src="../img/footer/thanhtoan1.webp" style="height: 30px;" alt="ZaloPay">
+                            <img src="../img/footer/thanhtoan2.webp" style="height: 30px;" alt="OnePay">
+                            <img src="../img/footer/thanhtoan3.webp" style="height: 30px;" alt="VNPay">
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <p style="font-size: 14px; opacity: 0.7;">© Since 2026 Teemory.vn™ - Tất cả các quyền được bảo lưu</p>
+                    <p>“Hug Teddy - Unbox love” - Teemory khiến việc tặng gấu bông là tặng một phần của trái tim, một phần cuộc sống và tình yêu mà các khách hàng muốn gửi gắm.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
