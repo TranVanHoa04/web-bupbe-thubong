@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin Tức - Teemory</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.4.1.min.js"> </script>
+    <script src="../js/product.js"></script>
+    <style>
+        .news-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        .news-item:hover {
+            background-color: #fffafa;
+        }
+        .news-img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .news-title {
+            color: #333;
+            font-weight: 700;
+            font-size: 20px;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .news-title:hover {
+            color: #ff6080;
+        }
+        .news-summary {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid bg-light p-0">
+        <div class="container-fluid header-content">
+            <div class="container">
+                <div class="row d-flex justify-content-between align-items-center w-100 ">
+                    <div class="col-2">
+                        <h1 style="color: #e91e63; font-weight: 800; font-family: 'Arial', sans-serif;">Teemory</h1>
+                    </div>
+                    <div class="col-3">
+                        <span style="color: #f06292; font-weight: bold; font-style: italic; font-size: 20px; font-family: sans-serif;">
+                            “Hug Teddy - Unbox Love”
+                        </span>
+                    </div>
+                    <div class="col-4">
+                        <form action="" class="search-form">
+                            <div class="input-group custom-search mt-1">
+                                <input type="text" placeholder="Nhập sản phẩm cần tìm ?" class="form-control border-0 bg-transparent ps-4">
+                                <button class="btn border-0 pe-4" type="submit">
+                                    <i class="bi bi-search" style="color: #e91e63; font-size: 20px; font-weight: bold;"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-3 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center" style="gap: 5px;">
+                            <div style="background-color: #f06292; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-telephone-fill" style="color: white; font-size: 18px;"></i>
+                            </div>
+                            <div style="color: #f06292; font-weight: 800; font-size: 18px; font-family: 'Arial', sans-serif;">036.694.3415</div>
+                        </div>
+                        <div class="taikhoan-giohang dropdown-custom" style="position: relative; margin-right: 15px;">
+                            <a href="#" class="icon-taikhoan-giohang">
+                                <i style="font-size: 22px !important; color: white;" class="bi bi-person"></i>
+                            </a>
+                            <ul class="dropdown-menu-custom" style="right: 0; left: auto; min-width: 150px;">
+                                <li><a href="../html/dangnhap.html">Đăng nhập</a></li>
+                                <li><a href="../html/dangky.html">Đăng ký</a></li>
+                            </ul>
+                        </div>
+                        <div class="taikhoan-giohang" style="position: relative; ">
+                            <a href="../html/thanhtoan.html" id="cart-icon" class="icon-taikhoan-giohang" style="position: relative;">
+                                <i style="font-size: 22px !important; color: white;" class="bi bi-cart"></i>
+                                <span id="cart-item-count" class="badge bg-warning rounded-circle" style="position: absolute; top: -5px; right: -5px; color: black; border: 2px solid white;">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height: 50px;" class="container-fluid header-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2 p-0">
+                        <a style="text-decoration: none; color: #f06292; width: 200px; font-size: 26px;" href="trangchu.html" class="d-flex align-items-center active">
+                            <div style="height: 50px; width: 70px;">
+                                <img src="../img/logo/logo.jpg" style="border: 3px solid; border-radius: 50%;" alt="" width="100%" height="100% ">
+                            </div>
+                            <span style="margin-left: 10px;">Teemory</span>
+                        </a>
+                    </div>
+                    <div class="col-10 p-0">
+                        <div class="navbar navbar-expand">
+                            <ul class="navbar-nav menu">
+                                <li class="nav-item"><a href="../html/gioithieu.html" class="nav-link me-4">Giới thiệu</a></li>
+                                <li class="nav-item dropdown-custom">
+                                    <a href="#" class="nav-link me-4 d-flex align-items-center">
+                                        Sản phẩm <i class="bi bi-chevron-down ms-1" style="font-size: 12px;"></i>
+                                    </a>
+                                    <ul class="dropdown-menu-custom">
+                                        <li><a href="../html/bupbe.html">Búp bê xinh xắn</a></li>
+                                        <li><a href="../html/gaubong.html">Gấu bông cao cấp</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a href="../html/tintuc.html" class="nav-link me-4">Tin Tức</a></li>
+                                <li class="nav-item"><a href="../html/dichvu.html" class="nav-link me-4">Dịch vụ</a></li>
+                                <li class="nav-item"><a href="../html/tatcasanpham.html" class="nav-link">Tất cả sản phẩm</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4 mb-5 bg-white p-4 shadow-sm" style="border-radius: 12px;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb" style="background: transparent; padding: 0;">
+                    <li class="breadcrumb-item"><a href="trangchu.html" style="color: #e91e63; text-decoration: none;">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tin Tức</li>
+                </ol>
+            </nav>
+
+            <h2 class="mb-4" style="color: #ff6080; font-weight: 800; border-left: 5px solid #ff6080; padding-left: 15px;">TIN TỨC MỚI NHẤT</h2>
+
+            <div class="row news-item">
+                <div class="col-md-3">
+                    <img src="../img/tintuc/tintuc1.png" alt="Deal Hot" class="news-img">
+                </div>
+                <div class="col-md-9">
+                    <a href="#" class="news-title">Deal Hot Bốc Khói – Gấu Sale Nửa Giá Tại Teemory!</a>
+                    <p class="news-summary">Tháng 4 năm nay, Teemory chính thức khởi động mùa sale "nóng tay" trong năm với chương trình ưu đãi cực lớn: "Deal Hot Bốc Khói – Gấu Sale Nửa Giá". Đây là cơ hội vàng để các tín đồ mê gấu sở hữu những mẫu gấu bông hot nhất với mức giá không tưởng.</p>
+                </div>
+            </div>
+
+            <div class="row news-item">
+                <div class="col-md-3">
+                    <img src="../img/tintuc/tintuc2.png" alt="Gấu Tốt Nghiệp" class="news-img">
+                </div>
+                <div class="col-md-9">
+                    <a href="#" class="news-title">Gấu Bông Tốt Nghiệp In Tên – Món Quà Độc Đáo, Ai Nhận Cũng Thích Mê!</a>
+                    <p class="news-summary">Ngày tốt nghiệp là một cột mốc quan trọng, đánh dấu sự trưởng thành và mở ra hành trình mới. Một món quà ý nghĩa không chỉ giúp gửi gắm những lời chúc tốt đẹp mà còn lưu giữ khoảnh khắc đáng nhớ của các bạn sinh viên.</p>
+                </div>
+            </div>
+
+            <div class="row news-item">
+                <div class="col-md-3">
+                    <img src="../img/tintuc/tintuc3.png" alt="Top 6 Mẫu Gấu" class="news-img">
+                </div>
+                <div class="col-md-9">
+                    <a href="#" class="news-title">Top 6 Mẫu Gấu Bông Tốt Nghiệp Được Săn Lùng Nhất 2026</a>
+                    <p class="news-summary">Tốt nghiệp là một cột mốc quan trọng, đánh dấu sự trưởng thành sau một hành trình dài đầy nỗ lực. Đó không chỉ là khoảnh khắc đáng nhớ mà còn là bước đệm cho những cơ hội mới phía trước. Hãy cùng điểm qua những mẫu gấu bông được yêu thích nhất.</p>
+                </div>
+            </div>
+
+            <div class="row news-item">
+                <div class="col-md-3">
+                    <img src="../img/tintuc/tintuc4.png" alt="Gấu Khổng Lồ" class="news-img">
+                </div>
+                <div class="col-md-9">
+                    <a href="#" class="news-title">Gấu Bông Khổng Lồ – Món Quà Siêu Hot, Ai Cũng Thích Mê!</a>
+                    <p class="news-summary">Gấu bông khổng lồ không chỉ là một món quà mà còn là biểu tượng của sự ấm áp và yêu thương. Với kích thước lớn từ 1m5 trở lên, những chú gấu bông cỡ đại luôn tạo được sức hút lớn đối với phái nữ và các em nhỏ.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1 style="font-weight: 800; font-size: 30px; margin-bottom: 15px;">Teemory</h1>
+                    <p>Teemory là hệ thống quà tặng gấu bông, nơi mỗi sản phẩm không chỉ là đồ chơi mềm mại, mà là biểu tượng của tình yêu và quan tâm.</p>
+                    <p>“Hug Teddy – Unbox love” – Teemory khiến việc tặng gấu bông là tặng một phần của trái tim, một phần cuộc sống và tình yêu mà các khách hàng muốn gửi gắm.</p>
+                    
+                    <h4 class="mt-4">Theo dõi chúng tôi</h4>
+                    <div class="d-flex social-icons" style="gap: 10px;">
+                        <a href="#"><img src="../img/footer/theodoi1.webp" alt="FB"></a>
+                        <a href="#"><img src="../img/footer/theodoi2.webp" alt="IG"></a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <h4>Hệ thống cửa hàng</h4>
+                    <p><strong>TP. HỒ CHÍ MINH</strong><br>
+                    50, Nguyễn Văn Bảo, Gò Vấp, TPHCM<br>
+                    Đại Học Công Nghiệp - 036.694.3415</p>
+
+                    <p>OPEN DAILY: 8H30-23H00</p>
+                </div>
+
+                <div class="col-md-4">
+                    <h4>Hỗ trợ khách hàng</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Chính sách đổi trả hàng online</a></li>
+                        <li><a href="#">Chính sách khách hàng thân thiết</a></li>
+                        <li><a href="#">Giao hàng & phí giao hàng</a></li>
+                        <li><a href="#">Giới thiệu & Liên hệ</a></li>
+                    </ul>
+
+                    <h4 class="mt-4">Phương thức thanh toán</h4>
+                    <div class="d-flex" style="gap: 10px;">
+                        <img src="../img/footer/thanhtoan1.webp" style="height: 30px;" alt="ZaloPay">
+                        <img src="../img/footer/thanhtoan2.webp" style="height: 30px;" alt="OnePay">
+                        <img src="../img/footer/thanhtoan3.webp" style="height: 30px;" alt="VNPay">
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+        <div class="text-center">
+            <p style="font-size: 14px; opacity: 0.7;">© Since 2026 Teemory.vn™ - Tất cả các quyền được bảo lưu</p>
+            <p>“Hug Teddy - Unbox love” - Teemory khiến việc tặng gấu bông là tặng một phần của trái tim, một phần cuộc sống và tình yêu mà các khách hàng muốn gửi gắm.</p>
+        </div>
+    </div>
+</footer>
+    </div>
+</body>
+</html>
