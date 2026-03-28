@@ -378,4 +378,13 @@ document.addEventListener("DOMContentLoaded", function () {
     renderProducts(bupBeList, "product-container-bupbe", 4);
     renderProducts(gauBongList, "all-gaubong-container");
     renderProducts(bupBeList, "all-bupbe-container");
+
+    var combinedContainer = document.getElementById("all-products-combined");
+    if (combinedContainer) {
+        var allProducts = [...gauBongList, ...bupBeList];
+
+        allProducts.sort(() => Math.random() - 0.5);
+
+        renderProducts(allProducts, "all-products-combined");
+    }
 });

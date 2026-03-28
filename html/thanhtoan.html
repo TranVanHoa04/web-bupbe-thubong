@@ -19,7 +19,7 @@
             
             // Nếu giỏ hàng trống
             if (cart.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-5">Giỏ hàng của bạn đang trống!<br><a href="trangchu.html" class="btn btn-outline-pink mt-3">Mua sắm ngay</a></td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-5">Giỏ hàng của bạn đang trống!</td></tr>`;
                 tempTotalElement.textContent = '0 đ';
                 finalTotalElement.textContent = '0 đ';
                 return;
@@ -92,7 +92,6 @@
 
         // CHẠY KHI TẢI TRANG
         document.addEventListener("DOMContentLoaded", function () {
-            // Vẽ giỏ hàng
             renderCart();
 
             // Gắn sự kiện xóa toàn bộ giỏ hàng (Phải đặt ở đây để tránh lỗi null)
@@ -255,10 +254,6 @@
                             
                             <button class="btn btn-pink w-100 py-3" style="font-size: 16px;">TIẾN HÀNH THANH TOÁN</button>
                         </div>
-                    </div>
-                    
-                    <div class="mt-3 text-center" style="font-size: 13px; color: #888;">
-                        <p><i class="bi bi-shield-check" style="color: #20c997;"></i> Thanh toán an toàn & Bảo mật 100%</p>
                     </div>
                 </div> 
             </div>
