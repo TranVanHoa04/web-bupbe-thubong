@@ -3,51 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dịch Vụ - Teemory</title>
+    <title>Sitemap - Teemory</title>    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery-3.4.1.min.js"> </script>
     <script src="../js/product.js"></script>
+    <script src="../js/jquery-3.4.1.min.js"></script>
     <style>
-        .service-item {
-            padding: 25px 0;
-            border-bottom: 1px solid #eee;
-            transition: background 0.3s ease;
-        }
-        .service-item:hover {
-            background-color: #f9f9f9;
-        }
-        .service-img {
+        /* Đảm bảo ảnh sitemap chiếm trọn chiều rộng và hiển thị rõ nét */
+        .sitemap-body {
             width: 100%;
-            border-radius: 12px;
-            border: 1px solid #ffebee;
+            padding: 0;
+            margin: 0;
+            background-color: #fff;
         }
-        .service-title {
-            color: #333;
-            font-weight: 700;
-            font-size: 22px;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 12px;
-        }
-        .service-title:hover {
-            color: #ff6080;
-        }
-        .service-summary {
-            color: #555;
-            font-size: 15px;
-            line-height: 1.7;
-            text-align: justify;
-        }
-        .service-tag {
-            color: #ff6080;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 13px;
-            margin-bottom: 5px;
+        .sitemap-img {
+            width: 100%;
+            height: auto;
             display: block;
         }
     </style>
@@ -157,59 +131,8 @@
             </div>
         </div>
 
-        <div class="container mt-4 mb-5 bg-white p-4 shadow-sm" style="border-radius: 12px;">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb" style="background: transparent; padding: 0;">
-                    <li class="breadcrumb-item"><a href="trangchu.html" style="color: #e91e63; text-decoration: none;">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page " style="color: #755A9F;">Dịch vụ</li>
-                </ol>
-            </nav>
-
-            <h2 class="mb-4" style="color: #ff6080; font-weight: 800; border-left: 5px solid #20c997; padding-left: 15px;">DỊCH VỤ TẠI TEEMORY</h2>
-
-            <div class="row service-item">
-                <div class="col-md-3">
-                    <img src="../img/dichvu/dichvu1.png" alt="Gói Quà" class="service-img">
-                </div>
-                <div class="col-md-9">
-                    <span class="service-tag">Miễn Phí</span>
-                    <a href="#" class="service-title">Gói Quà Miễn Phí</a>
-                    <p class="service-summary">Gấu Bông tại Teemory được bọc thành những hộp quà xinh xắn nhằm tạo cảm giác bất ngờ và hồi hộp cho người nhận. Chúng tôi tỉ mỉ trong từng khâu thắt nơ và chọn hộp để món quà của bạn trở nên trọn vẹn nhất.</p>
-                </div>
-            </div>
-
-            <div class="row service-item">
-                <div class="col-md-3">
-                    <img src="../img/dichvu/dichvu2.png" alt="Nén Nhỏ Gấu" class="service-img">
-                </div>
-                <div class="col-md-9">
-                    <span class="service-tag">Hút Chân Không</span>
-                    <a href="#" class="service-title">Nén Nhỏ Gấu - Hút Chân Không Miễn Phí</a>
-                    <p class="service-summary">Nén chân không là công nghệ hút hết không khí trong gấu để thu nhỏ kích thước, giúp việc vận chuyển trở nên dễ dàng và tiết kiệm. Gấu Bông tại shop đảm bảo nhồi bông chất lượng cao nên sau khi mở nén sẽ giữ được hình dáng và form đẹp như cũ.</p>
-                </div>
-            </div>
-
-            <div class="row service-item">
-                <div class="col-md-3">
-                    <img src="../img/dichvu/dichvu3.png" alt="Giặt Gấu Bông" class="service-img">
-                </div>
-                <div class="col-md-9">
-                    <span class="service-tag">Chăm sóc</span>
-                    <a href="#" class="service-title">Dịch Vụ Giặt Gấu Bông</a>
-                    <p class="service-summary">Bao lâu rồi bạn chưa cho "người bạn nhỏ" của mình đi tắm? Tại Teemory, chúng tôi cung cấp dịch vụ giặt và khử khuẩn chuyên nghiệp, giúp gấu bông luôn sạch sẽ, thơm tho và an toàn cho sức khỏe người sử dụng.</p>
-                </div>
-            </div>
-
-            <div class="row service-item">
-                <div class="col-md-3">
-                    <img src="../img/dichvu/dichvu4.png" alt="Giao Hàng" class="service-img">
-                </div>
-                <div class="col-md-9">
-                    <span class="service-tag">Tận Tâm</span>
-                    <a href="#" class="service-title">Giao Hàng Tận Nhà</a>
-                    <p class="service-summary">Bạn chỉ cần chọn mẫu trên web hoặc gọi điện, Teemory sẽ giao quà tận tay người nhận. Dù bạn ở bất cứ đâu, chúng tôi luôn sẵn lòng kết nối yêu thương thông qua những chú gấu bông mềm mại.</p>
-                </div>
-            </div>
+        <div class="container-fluid sitemap-body">
+            <img src="../img/sitemap/sitemap.png" alt="Sitemap Teemory" class="sitemap-img">
         </div>
 
         <footer>
@@ -219,23 +142,19 @@
                         <h1 style="font-weight: 800; font-size: 30px; margin-bottom: 15px;">Teemory</h1>
                         <p>Teemory là hệ thống quà tặng gấu bông, nơi mỗi sản phẩm không chỉ là đồ chơi mềm mại, mà là biểu tượng của tình yêu và quan tâm.</p>
                         <p>“Hug Teddy – Unbox love” – Teemory khiến việc tặng gấu bông là tặng một phần của trái tim, một phần cuộc sống và tình yêu mà các khách hàng muốn gửi gắm.</p>
-                        
                         <h4 class="mt-4">Theo dõi chúng tôi</h4>
                         <div class="d-flex social-icons" style="gap: 10px;">
                             <a href="#"><img src="../img/footer/theodoi1.webp" alt="FB"></a>
                             <a href="#"><img src="../img/footer/theodoi2.webp" alt="IG"></a>
                         </div>
                     </div>
-
                     <div class="col-md-4">
                         <h4>Hệ thống cửa hàng</h4>
                         <p><strong>TP. HỒ CHÍ MINH</strong><br>
                         50, Nguyễn Văn Bảo, Gò Vấp, TPHCM<br>
                         Đại Học Công Nghiệp - 036.694.3415</p>
-
                         <p>OPEN DAILY: 8H30-23H00</p>
                     </div>
-
                     <div class="col-md-4">
                         <h4>Hỗ trợ khách hàng</h4>
                         <ul class="list-unstyled">
@@ -244,7 +163,6 @@
                             <li><a href="#">Giao hàng & phí giao hàng</a></li>
                             <li><a href="#">Giới thiệu & Liên hệ</a></li>
                         </ul>
-
                         <h4 class="mt-4">Phương thức thanh toán</h4>
                         <div class="d-flex" style="gap: 10px;">
                             <img src="../img/footer/thanhtoan1.webp" style="height: 30px;" alt="ZaloPay">
@@ -253,15 +171,13 @@
                         </div>
                     </div>
                 </div>
-
                 <hr>
-
-            <div class="text-center">
-                <p style="font-size: 14px; opacity: 0.7;">© Since 2026 Teemory.vn™ - Tất cả các quyền được bảo lưu</p>
-                <p>“Hug Teddy - Unbox love” - Teemory khiến việc tặng gấu bông là tặng một phần của trái tim, một phần cuộc sống và tình yêu mà các khách hàng muốn gửi gắm.</p>
+                <div class="text-center">
+                    <p style="font-size: 14px; opacity: 0.7;">© Since 2026 Teemory.vn™ - Tất cả các quyền được bảo lưu</p>
+                    <p>“Hug Teddy - Unbox love” - Teemory khiến việc tặng gấu bông là tặng một phần của trái tim, một phần cuộc sống và tình yêu mà các khách hàng muốn gửi gắm.</p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     </div>
 </body>
 </html>
